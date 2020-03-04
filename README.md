@@ -11,7 +11,7 @@ In command prompt navigate to  halogo directory and execute following command
  java -jar build/libs/halogo-0.0.1-SNAPSHOT.jar
 ```
 
-For fron-end navigate to halogo/Web/ui and execute following command 
+For fron-end navigate to halogo/web-ui/ and execute following command 
 
 ```
 ng serve --open
