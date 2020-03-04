@@ -19,4 +19,9 @@ ng serve --open
 
 <em>Program converts billion number into words. Maximum to 2 digit decimal value will be converted.</em>
 
-Please hit [URL](http://localhost:8080/convert?name=John&currency=123.99 "Testing url") to test BE
+To test API please execute below command in terminal
+
+```
+curl -H "Content-Type: application/json" -X POST -d '{"name":"John","currency":"123"}' http://localhost:8080/convert
+```
+

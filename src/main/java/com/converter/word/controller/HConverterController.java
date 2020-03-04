@@ -1,15 +1,13 @@
 package com.converter.word.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.converter.word.model.User;
 import com.converter.word.service.ConverterService;
-
-import io.micrometer.core.lang.NonNull;
 
 @RestController
 public class HConverterController {
@@ -17,8 +15,11 @@ public class HConverterController {
 	@Autowired
 	ConverterService converterService;
 	
-	@GetMapping("/convert")
-	public String convert(@Valid @NonNull @RequestParam String name,@Valid @NonNull @RequestParam double currency) {
-		return converterService.convert(currency);
+	@PostMapping("/convert")
+	public ResponseEntity<User> convert(@RequestBody User user) {
+		if(user.getCurrency() < 0) {
+			return ResponseEntity.badRequest().body(user);
+		}
+		return ResponseEntity.ok().body(converterService.convert(user));
 	}
 }
